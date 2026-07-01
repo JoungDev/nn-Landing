@@ -9,6 +9,12 @@ const props = defineProps({
   },
 })
 
+const emit = defineEmits(['view-product'])
+
+function viewProduct() {
+  emit('view-product', props.product)
+}
+
 const availableSizes = computed(() => {
   return props.product.sizes
     .filter((size) => size.available)
@@ -79,6 +85,7 @@ const statusText = computed(() => {
       <button
         class="product-card__button"
         type="button"
+        @click="viewProduct"
       >
         Ver pieza
       </button>
