@@ -1,12 +1,9 @@
 <script setup>
 import SiteHeader from './components/layout/SiteHeader.vue'
+import HeroSection from './components/sections/HeroSection.vue';
 </script>
 
 <template>
   <SiteHeader />
-
-  <main id="inicio">
-    <h1>NN</h1>
-    <p>Moda con estilo y significado.</p>
-  </main>
+  <HeroSection />
 </template>
