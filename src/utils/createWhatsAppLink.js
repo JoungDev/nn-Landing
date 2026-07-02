@@ -13,7 +13,7 @@ export function createWhatsAppLink({
   const colors = product.colors.join(', ')
 
   const message = [
-    'Hola, quiero consultar la disponibilidad de esta prenda de NN:',
+    'Hola, quiero confrimar mi pedido para esta prenda de NN:',
     '',
     `Prenda: ${product.garmentType} ${product.name}`,
     `Colección: ${product.collectionNumber}`,
@@ -21,7 +21,7 @@ export function createWhatsAppLink({
     `Color: ${colors}`,
     `Precio: ${price}`,
     '',
-    '¿Está disponible?',
+    '¿Que medios de pago manejas?',
   ].join('\n')
 
   return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`

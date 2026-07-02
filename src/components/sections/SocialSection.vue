@@ -76,13 +76,7 @@ const socialNetworks = computed(() => {
         </a>
       </div>
 
-      <div class="social__message">
-        <span>NN · Colombia</span>
-
-        <p>
-          Vestimos historias. Creamos conversación. Resistimos al olvido.
-        </p>
-      </div>
+    
     </div>
   </section>
 </template>

@@ -14,7 +14,7 @@ const navigationItems = [
   { label: 'Comunidad', href: '#comunidad' },
 ]
 
-const whatsappLink = `https://wa.me/${siteConfig.contact.whatsappNumber}`
+//const whatsappLink = `https://wa.me/${siteConfig.contact.whatsappNumber}`
 
 function toggleMenu() {
   isMenuOpen.value = !isMenuOpen.value
@@ -81,14 +81,6 @@ onUnmounted(() => {
         </a>
       </nav>
 
-      <a
-        class="site-header__cta"
-        :href="whatsappLink"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        WhatsApp
-      </a>
 
       <button
         class="site-header__menu-button"

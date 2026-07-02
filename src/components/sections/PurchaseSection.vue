@@ -89,15 +89,6 @@ const whatsappLink = `https://wa.me/${siteConfig.contact.whatsappNumber}`
 
           <p>{{ siteConfig.shipping.message }}</p>
         </div>
-
-        <a
-          class="purchase__button"
-          :href="whatsappLink"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Hablar con NN
-        </a>
       </div>
     </div>
   </section>

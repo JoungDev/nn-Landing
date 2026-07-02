@@ -18,7 +18,7 @@
         </h1>
 
         <p class="hero__description">
-          NN transforma capítulos de la historia de Colombia en prendas
+          NN transforma capítulos de la historia Colombiana en prendas
           creadas para recordar, cuestionar y resistir.
         </p>
 
@@ -56,13 +56,11 @@
     </div>
 
     <div class="hero__ticker">
-      <span>Moda con significado</span>
+      <span>No somos tendencia, Somos conciencia</span>
       <span aria-hidden="true">✦</span>
-      <span>Historia que permanece</span>
+      <span>HIstoria que se lleva puesta</span>
       <span aria-hidden="true">✦</span>
-      <span>Diseñado en Colombia</span>
-      <span aria-hidden="true">✦</span>
-      <span>La memoria no se viste de olvido</span>
+      <span>si ellos lo ocultan, nosotros lo contamos</span>
     </div>
   </section>
 </template>
@@ -256,6 +254,8 @@
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  padding-left: 150px;
+  justify-content: center;
 }
 
 @media (max-width: 900px) {

@@ -23,7 +23,7 @@ function closeProduct() {
                     <p class="catalog__eyebrow">Colección actual</p>
 
                     <h2 id="catalog-title" class="catalog__title">
-                        Prendas que cargan memoria.
+                        Donde la historia se vuelve prenda.
                     </h2>
                 </div>
 

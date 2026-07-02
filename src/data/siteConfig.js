@@ -1,6 +1,6 @@
 export const siteConfig = {
   brandName: 'NN',
-  slogan: 'La memoria no se viste de olvido.',
+  slogan: 'Moda con mensaje, tejidos con historia.',
 
   contact: {
     whatsappNumber: '573102910668',
@@ -10,7 +10,7 @@ export const siteConfig = {
   socialLinks: {
     tiktok: 'https://www.tiktok.com/@nn.colombia8',
     facebook: 'https://www.facebook.com/share/1CtsEekFZV/',
-    instagram: null,
+    instagram: 'https://www.instagram.com/nn_colombia3/',
   },
 
   shipping: {
