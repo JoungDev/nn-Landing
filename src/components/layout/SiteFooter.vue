@@ -1,5 +1,5 @@
 <script setup>
-import logoUrl from '../../assets/images/brand/nn-logo-blanco.JPG'
+import logoUrl from '../../assets/images/brand/nn-logo-blanco.jpg'
 import { siteConfig } from '../../data/siteConfig'
 
 const currentYear = new Date().getFullYear()
