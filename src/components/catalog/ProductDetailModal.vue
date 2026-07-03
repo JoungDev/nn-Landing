@@ -242,12 +242,10 @@ onUnmounted(() => {
 .product-modal__main-image {
     aspect-ratio: 4 / 5;
     overflow: hidden;
-    background-color: #cac7c0;
 }
 
 .product-modal__main-image img {
     width: 100%;
-    height: 100%;
     object-fit: contain;
     object-position: center;
 }

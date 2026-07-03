@@ -244,18 +244,22 @@
 .hero__ticker {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 28px;
-  min-width: max-content;
+
+  width: 100%;
   min-height: 56px;
-  padding-inline: 24px;
+  padding: 0 24px;
+  box-sizing: border-box;
+
   color: #111111;
   background-color: #ffffff;
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.12em;
+  line-height: 1.4;
+  text-align: center;
   text-transform: uppercase;
-  padding-left: 150px;
-  justify-content: center;
 }
 
 @media (max-width: 900px) {
@@ -271,6 +275,13 @@
 
   .hero__visual {
     min-height: 480px;
+  }
+
+  .hero__ticker {
+    gap: 18px;
+    padding: 14px 20px;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
   }
 }
 
@@ -315,7 +326,19 @@
   }
 
   .hero__ticker {
-    overflow: hidden;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    width: 100%;
+    min-height: auto;
+    padding: 16px 12px;
+
+    gap: 10px 14px;
+
+    font-size: 0.6rem;
+    letter-spacing: 0.07em;
+    line-height: 1.5;
+    text-align: center;
   }
 }
 </style>

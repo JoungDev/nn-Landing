@@ -101,7 +101,7 @@ const statusText = computed(() => {
     position: relative;
     aspect-ratio: 4 / 5;
     overflow: hidden;
-    background-color: #e7e5df;
+    background-color: #ffffff;
 }
 
 .product-card__image {

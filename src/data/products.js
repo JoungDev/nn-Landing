@@ -1,7 +1,12 @@
 import operacionOrionImage from "../assets/images/products/operacion-orion-main.jpeg";
 import elSaladoFrontImage from "../assets/images/products/el-salado-front.jpeg";
 import elSaladoBackImage from "../assets/images/products/el-salado-back.jpeg";
+import elSaladoBackImage2 from "../assets/images/products/el-salado-person-back.jpeg";
+import elSaladoBackImage3 from "../assets/images/products/el-salado-person-front.jpeg";
+import elSaladoMessageImage from "../assets/images/products/el-salado-message.jpeg";
 import tiempoDescuentoImage from "../assets/images/products/tiempo-de-descuento-main.jpeg";
+import operacionOrionPerson from "../assets/images/products/operacion-orion-person.png";
+import operacionOrionMessage from "../assets/images/products/operacion-orion-message.png";
 
 export const products = [
   /* {
@@ -40,8 +45,8 @@ export const products = [
     price: 155000,
     colors: ["Negro"],
     sizes: [
-      { label: "S", available: true },
-      { label: "M", available: true },
+      { label: "S", available: false },
+      { label: "M", available: false },
       { label: "L", available: true },
       { label: "XL", available: true },
     ],
@@ -58,6 +63,19 @@ export const products = [
         src: elSaladoBackImage,
         alt: "Parte posterior del hoodie de la colección El Salado",
       },
+      {
+        src: elSaladoMessageImage,
+        alt: "Detalle del mensaje en la parte posterior del hoodie de la colección El Salado",
+      },
+      {
+        src: elSaladoBackImage2,
+        alt: "Parte posterior del hoodie de la colección El Salado con persona",
+      },
+      {
+        src: elSaladoBackImage3,
+        alt: "Parte frontal del hoodie de la colección El Salado con persona",
+      }
+      
     ],
     status: "available",
     featured: true,
@@ -85,6 +103,15 @@ export const products = [
         src: operacionOrionImage,
         alt: "Camiseta de la colección Operación Orión",
       },
+      {
+        src: operacionOrionPerson,
+        alt: "Camiseta de la colección Operación Orión con persona",
+      },
+      {
+        src: operacionOrionMessage,
+        alt: "Detalle del mensaje en la parte posterior de la camiseta de la colección Operación Orión",
+      },
+
     ],
     status: "sold-out",
     featured: true,
