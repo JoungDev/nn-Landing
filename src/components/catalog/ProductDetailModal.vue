@@ -1,5 +1,12 @@
 <script setup>
-import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+import {
+    computed,
+    nextTick,
+    onMounted,
+    onUnmounted,
+    ref,
+    watch,
+} from 'vue'
 import SizeSelector from './SizeSelector.vue'
 import { formatCurrency } from '../../utils/formatCurrency'
 import { createWhatsAppLink } from '../../utils/createWhatsAppLink'
@@ -20,6 +27,7 @@ const emit = defineEmits(['close'])
 
 const selectedSize = ref('')
 const activeImageIndex = ref(0)
+const modalPanel = ref(null)
 
 const activeImage = computed(() => {
     return props.product?.images[activeImageIndex.value] ?? null
@@ -57,8 +65,21 @@ watch(
 
 watch(
     () => props.isOpen,
-    (isOpen) => {
+    async (isOpen) => {
         document.body.style.overflow = isOpen ? 'hidden' : ''
+
+        if (isOpen) {
+            selectedSize.value = ''
+            activeImageIndex.value = 0
+
+            await nextTick()
+
+            modalPanel.value?.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: 'auto',
+            })
+        }
     },
 )
 
@@ -76,7 +97,7 @@ onUnmounted(() => {
     <Teleport to="body">
         <div v-if="isOpen && product" class="product-modal" role="dialog" aria-modal="true"
             :aria-labelledby="`product-modal-title-${product.id}`" @click.self="closeModal">
-            <div class="product-modal__panel">
+            <div ref="modalPanel" class="product-modal__panel">
                 <button class="product-modal__close" type="button" aria-label="Cerrar detalle del producto"
                     @click="closeModal">
                     ×
@@ -153,8 +174,8 @@ onUnmounted(() => {
 
                         <a class="product-modal__whatsapp" :class="{
                             'product-modal__whatsapp--disabled': !whatsappLink,
-                        }" :href="whatsappLink || undefined" target="_blank" rel="noopener noreferrer" :aria-disabled="!whatsappLink"
-                            @click="!whatsappLink && $event.preventDefault()">
+                        }" :href="whatsappLink || undefined" target="_blank" rel="noopener noreferrer"
+                            :aria-disabled="!whatsappLink" @click="!whatsappLink && $event.preventDefault()">
                             Pedir por WhatsApp
                         </a>
 
@@ -171,29 +192,30 @@ onUnmounted(() => {
 
 <style scoped>
 .product-modal__sold-out {
-  margin-top: 30px;
-  padding: 28px;
-  color: #ffffff;
-  background-color: #111111;
-  border: 1px solid #111111;
+    margin-top: 30px;
+    padding: 28px;
+    color: #ffffff;
+    background-color: #111111;
+    border: 1px solid #111111;
 }
 
 .product-modal__sold-out span {
-  display: inline-block;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #ffffff;
-  font-size: 0.76rem;
-  font-weight: 900;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+    display: inline-block;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ffffff;
+    font-size: 0.76rem;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
 }
 
 .product-modal__sold-out p {
-  margin-top: 18px;
-  color: #c5c5c5;
-  font-size: 0.9rem;
-  line-height: 1.7;
+    margin-top: 18px;
+    color: #c5c5c5;
+    font-size: 0.9rem;
+    line-height: 1.7;
 }
+
 .product-modal {
     position: fixed;
     inset: 0;
@@ -399,127 +421,139 @@ onUnmounted(() => {
 }
 
 @media (max-width: 900px) {
-    .product-modal {
-        display: block;
-        padding: 0;
-        overflow: hidden;
-        background-color: #f5f3ee;
-        backdrop-filter: none;
-    }
+  .product-modal {
+    display: block;
+    padding: 0;
+    overflow: hidden;
+    background-color: #f5f3ee;
+    backdrop-filter: none;
+  }
 
-    .product-modal__panel {
-        display: block;
-        width: 100%;
-        height: 100dvh;
-        max-height: 100dvh;
-        overflow-x: hidden;
-        overflow-y: auto;
-        overscroll-behavior: contain;
-    }
+  .product-modal__panel {
+    display: block;
+    width: 100%;
+    height: 100svh;
+    max-height: 100svh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
 
-    .product-modal__close {
-        position: fixed;
-        top: 14px;
-        right: 14px;
-        z-index: 2002;
-        width: 46px;
-        height: 46px;
-        border-color: rgba(255, 255, 255, 0.5);
-        box-shadow: 0 5px 18px rgba(0, 0, 0, 0.24);
-    }
+  .product-modal__close {
+    position: fixed;
+    top: 14px;
+    right: 14px;
+    z-index: 2002;
+    width: 46px;
+    height: 46px;
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.24);
+  }
 
-    .product-modal__gallery {
-        padding: 0 0 16px;
-        background-color: #dedbd3;
-    }
+  .product-modal__gallery {
+    padding: 0 0 16px;
+    background-color: #dedbd3;
+  }
 
-    .product-modal__main-image {
-        width: 100%;
-        height: min(62dvh, 570px);
-        aspect-ratio: auto;
-        background-color: #dedbd3;
-    }
+  .product-modal__main-image {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: auto;
+    overflow: visible;
+    background-color: #dedbd3;
+  }
 
-    .product-modal__main-image img {
-        padding: 18px;
-        object-fit: contain;
-    }
+  .product-modal__main-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    padding: 0;
+    object-fit: contain;
+    object-position: center;
+  }
 
-    .product-modal__thumbnails {
-        padding-inline: 16px;
-        overflow-x: auto;
-        scrollbar-width: thin;
-    }
+  .product-modal__thumbnails {
+    padding-inline: 16px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
 
-    .product-modal__thumbnail {
-        flex: 0 0 72px;
-        width: 72px;
-    }
+  .product-modal__thumbnail {
+    flex: 0 0 72px;
+    width: 72px;
+  }
 
-    .product-modal__content {
-        padding: 38px 20px 44px;
-    }
+  .product-modal__content {
+    padding: 38px 20px 44px;
+  }
 
-    .product-modal__title {
-        max-width: 90%;
-        font-size: clamp(2.5rem, 12vw, 4.5rem);
-    }
+  .product-modal__title {
+    max-width: 90%;
+    font-size: clamp(2.5rem, 12vw, 4.5rem);
+  }
 
-    .product-modal__description {
-        font-size: 0.94rem;
-    }
+  .product-modal__description {
+    font-size: 0.94rem;
+  }
 
-    .product-modal__meaning {
-        margin-top: 26px;
-    }
+  .product-modal__meaning {
+    margin-top: 26px;
+  }
 
-    .product-modal__details {
-        margin-block: 24px;
-    }
+  .product-modal__details {
+    margin-block: 24px;
+  }
 
-    .product-modal__whatsapp {
-        width: 100%;
-    }
+  .product-modal__whatsapp {
+    width: 100%;
+  }
 }
 
 @media (max-width: 480px) {
-    .product-modal__main-image {
-        height: 54dvh;
-        min-height: 390px;
-    }
+  .product-modal__main-image {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: auto;
+  }
 
-    .product-modal__main-image img {
-        padding: 14px;
-    }
+  .product-modal__main-image img {
+    width: 100%;
+    height: auto;
+    padding: 0;
+    object-fit: contain;
+  }
 
-    .product-modal__content {
-        padding: 34px 18px 40px;
-    }
+  .product-modal__content {
+    padding: 34px 18px 40px;
+  }
 
-    .product-modal__collection {
-        padding-right: 60px;
-    }
+  .product-modal__collection {
+    padding-right: 60px;
+  }
 
-    .product-modal__type {
-        margin-top: 22px;
-    }
+  .product-modal__type {
+    margin-top: 22px;
+  }
 
-    .product-modal__title {
-        font-size: clamp(2.3rem, 13vw, 3.7rem);
-        line-height: 0.92;
-    }
+  .product-modal__title {
+    font-size: clamp(2.3rem, 13vw, 3.7rem);
+    line-height: 0.92;
+  }
 
-    .product-modal__price {
-        margin-top: 18px;
-    }
+  .product-modal__price {
+    margin-top: 18px;
+  }
 
-    .product-modal__details div {
-        grid-template-columns: 1fr;
-        gap: 5px;
-    }
+  .product-modal__details div {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
 
-    .product-modal__shipping-note {
-        text-align: center;
-    }
+  .product-modal__shipping-note {
+    text-align: center;
+  }
 }
 </style>
