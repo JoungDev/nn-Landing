@@ -27,6 +27,7 @@ const statusText = computed(() => {
         available: 'Disponible',
         'low-stock': 'Últimas unidades',
         'sold-out': 'Agotado',
+        new: 'New'
     }
 
     return statusLabels[props.product.status] ?? 'Consultar'
@@ -38,13 +39,16 @@ const statusText = computed(() => {
         <div class="product-card__media">
             <img class="product-card__image" :src="product.images[0].src" :alt="product.images[0].alt" />
 
-            <span v-if="product.status !== 'sold-out'" class="product-card__status"
-                :class="`product-card__status--${product.status}`">
-                {{ statusText }}
+            <span v-if="product.status === 'sold-out'" class="product-card__sold-out-ribbon">
+                Sold out
             </span>
 
-            <span v-else class="product-card__sold-out-ribbon">
-                Sold out
+            <span v-else-if="product.status === 'new'" class="product-card__new-ribbon">
+                New
+            </span>
+
+            <span v-else class="product-card__status" :class="`product-card__status--${product.status}`">
+                {{ statusText }}
             </span>
 
             <span class="product-card__number">
@@ -241,23 +245,33 @@ const statusText = computed(() => {
     background-color: transparent;
 }
 
+.product-card__sold-out-ribbon,
+.product-card__new-ribbon {
+    position: absolute;
+    top: 34px;
+    left: -48px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 190px;
+    min-height: 34px;
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transform: rotate(-38deg);
+}
+
 .product-card__sold-out-ribbon {
-  position: absolute;
-  top: 34px;
-  left: -48px;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 190px;
-  min-height: 34px;
-  color: #ffffff;
-  background-color: #111111;
-  font-size: 0.68rem;
-  font-weight: 900;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  transform: rotate(-38deg);
+    color: #ffffff;
+    background-color: #111111;
+}
+
+.product-card__new-ribbon {
+    color: #111111;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
 }
 
 @media (max-width: 480px) {

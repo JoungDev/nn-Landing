@@ -7,9 +7,13 @@ import elSaladoMessageImage from "../assets/images/products/el-salado-message.jp
 import tiempoDescuentoImage from "../assets/images/products/tiempo-de-descuento-main.jpeg";
 import operacionOrionPerson from "../assets/images/products/operacion-orion-person.png";
 import operacionOrionMessage from "../assets/images/products/operacion-orion-message.png";
+import tiempoDescuentoMessage from "../assets/images/products/tiempo-de-descuento-message.png";
+import tiempoDescuentoBackImage from "../assets/images/products/tiempo-de-descuento-back.png";
+import tiempoDescuentoPerson from "../assets/images/products/tiempo-de-descuento-person.png";
+import tiempoDescuentoPerson2 from "../assets/images/products/tiempo-de-descuento-person2.png";
 
 export const products = [
-  /* {
+  {
     id: 3,
     slug: "tiempo-de-descuento",
     collectionNumber: "03",
@@ -32,10 +36,26 @@ export const products = [
         src: tiempoDescuentoImage,
         alt: "Camiseta tipo polo de la colección Tiempo de Descuento",
       },
+      {
+        src: tiempoDescuentoMessage,
+        alt: "Detalle del mensaje en la parte posterior de la camiseta tipo polo de la colección Tiempo de Descuento",
+      },
+      {
+        src: tiempoDescuentoBackImage,
+        alt: "Parte posterior de la camiseta tipo polo de la colección Tiempo de Descuento",
+      },
+      {
+        src: tiempoDescuentoPerson,
+        alt: "Camiseta de la colección Tiempo de Descuento con persona",
+      },
+      {
+        src: tiempoDescuentoPerson2,
+        alt: "Camiseta de la colección Tiempo de Descuento con persona 2",
+      }
     ],
-    status: "available",
+    status: "new",
     featured: true,
-  } ,*/
+  } ,
   {
     id: 2,
     slug: "el-salado",

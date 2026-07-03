@@ -1,6 +1,6 @@
 export const siteConfig = {
   brandName: 'NN',
-  slogan: 'Moda con mensaje, tejidos con historia.',
+  slogan: 'Moda con mensaje, tejidos con historia .',
 
   contact: {
     whatsappNumber: '573102910668',
