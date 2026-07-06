@@ -7,8 +7,8 @@ import elSaladoMessageImage from "../assets/images/products/el-salado-message.jp
 import tiempoDescuentoImage from "../assets/images/products/tiempo-de-descuento-main.jpeg";
 import operacionOrionPerson from "../assets/images/products/operacion-orion-person.png";
 import operacionOrionMessage from "../assets/images/products/operacion-orion-message.png";
+import operacionOrionFront from "../assets/images/products/operacion-orion-front.png";
 import tiempoDescuentoMessage from "../assets/images/products/tiempo-de-descuento-message.png";
-import tiempoDescuentoBackImage from "../assets/images/products/tiempo-de-descuento-back.png";
 import tiempoDescuentoPerson from "../assets/images/products/tiempo-de-descuento-person.png";
 import tiempoDescuentoPerson2 from "../assets/images/products/tiempo-de-descuento-person2.png";
 
@@ -39,10 +39,6 @@ export const products = [
       {
         src: tiempoDescuentoMessage,
         alt: "Detalle del mensaje en la parte posterior de la camiseta tipo polo de la colección Tiempo de Descuento",
-      },
-      {
-        src: tiempoDescuentoBackImage,
-        alt: "Parte posterior de la camiseta tipo polo de la colección Tiempo de Descuento",
       },
       {
         src: tiempoDescuentoPerson,
@@ -122,6 +118,11 @@ export const products = [
       {
         src: operacionOrionImage,
         alt: "Camiseta de la colección Operación Orión",
+      },
+      
+      {
+        src: operacionOrionFront,
+        alt: "Detalle del frente de la camiseta de la colección Operación Orión",
       },
       {
         src: operacionOrionPerson,

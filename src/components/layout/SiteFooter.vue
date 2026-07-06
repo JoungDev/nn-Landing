@@ -64,7 +64,6 @@ const whatsappLink = `https://wa.me/${siteConfig.contact.whatsappNumber}`
           <p class="site-footer__heading">Contacto</p>
 
           <a
-            :href="whatsappLink"
             target="_blank"
             rel="noopener noreferrer"
           >

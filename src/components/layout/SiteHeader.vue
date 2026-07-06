@@ -121,20 +121,6 @@ onUnmounted(() => {
           <span>{{ String(index + 1).padStart(2, '0') }}</span>
           {{ item.label }}
         </a>
-
-        <div class="site-header__mobile-contact">
-          <p>Pedidos y disponibilidad</p>
-
-          <a
-            :href="whatsappLink"
-            target="_blank"
-            rel="noopener noreferrer"
-            @click="closeMenu"
-          >
-            Hablar por WhatsApp
-            <span aria-hidden="true">↗</span>
-          </a>
-        </div>
       </nav>
     </div>
   </Transition>
