@@ -22,10 +22,10 @@ export const products = [
     price: 87000,
     colors: ["Paleta tricolor"],
     sizes: [
-      { label: "S", available: true },
+      { label: "S", available: false },
       { label: "M", available: true },
       { label: "L", available: true },
-      { label: "XL", available: true },
+      { label: "XL", available: false },
     ],
     shortDescription:
       "Dos épocas, una misma estrategia: usar la pasión del fútbol para ocultar hechos mucho más graves e importantes.",

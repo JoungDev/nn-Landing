@@ -24,7 +24,9 @@ function selectSize(size) {
 <template>
   <div class="size-selector">
     <div class="size-selector__heading">
-      <p class="size-selector__label">Selecciona tu talla</p>
+      <p class="size-selector__label">
+        Selecciona tu talla
+      </p>
 
       <span v-if="modelValue">
         Talla seleccionada: {{ modelValue }}
@@ -36,21 +38,49 @@ function selectSize(size) {
       role="group"
       aria-label="Tallas disponibles"
     >
-      <button
+      <div
         v-for="size in sizes"
         :key="size.label"
-        class="size-selector__option"
+        class="size-selector__option-wrapper"
         :class="{
-          'size-selector__option--selected': modelValue === size.label,
-          'size-selector__option--unavailable': !size.available,
+          'size-selector__option-wrapper--unavailable': !size.available,
         }"
-        type="button"
-        :disabled="!size.available"
-        :aria-pressed="modelValue === size.label"
-        @click="selectSize(size)"
+        :tabindex="!size.available ? 0 : -1"
+        :aria-label="
+          !size.available
+            ? `Talla ${size.label} agotada`
+            : undefined
+        "
       >
-        {{ size.label }}
-      </button>
+        <button
+          class="size-selector__option"
+          :class="{
+            'size-selector__option--selected':
+              modelValue === size.label,
+            'size-selector__option--unavailable':
+              !size.available,
+          }"
+          type="button"
+          :disabled="!size.available"
+          :aria-pressed="modelValue === size.label"
+          :aria-label="
+            size.available
+              ? `Seleccionar talla ${size.label}`
+              : `Talla ${size.label} agotada`
+          "
+          @click="selectSize(size)"
+        >
+          {{ size.label }}
+        </button>
+
+        <span
+          v-if="!size.available"
+          class="size-selector__tooltip"
+          role="tooltip"
+        >
+          Sold out
+        </span>
+      </div>
     </div>
 
     <p
@@ -89,6 +119,15 @@ function selectSize(size) {
   margin-top: 14px;
 }
 
+.size-selector__option-wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.size-selector__option-wrapper:focus {
+  outline: none;
+}
+
 .size-selector__option {
   display: inline-flex;
   align-items: center;
@@ -105,11 +144,17 @@ function selectSize(size) {
   transition:
     color 180ms ease,
     background-color 180ms ease,
-    border-color 180ms ease;
+    border-color 180ms ease,
+    opacity 180ms ease;
 }
 
 .size-selector__option:hover:not(:disabled) {
   border-color: #111111;
+}
+
+.size-selector__option:focus-visible {
+  outline: 2px solid #111111;
+  outline-offset: 3px;
 }
 
 .size-selector__option--selected {
@@ -119,20 +164,64 @@ function selectSize(size) {
 }
 
 .size-selector__option--unavailable {
-  position: relative;
-  color: #9a9a9a;
+  color: #999999;
   background-color: #eeeeee;
   border-color: #d0d0d0;
   cursor: not-allowed;
+  opacity: 0.72;
 }
 
-.size-selector__option--unavailable::after {
+.size-selector__tooltip {
   position: absolute;
-  width: 70%;
-  height: 1px;
-  background-color: #9a9a9a;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  z-index: 10;
+  padding: 7px 10px;
+  color: #ffffff;
+  background-color: #111111;
+  font-size: 0.55rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate(-50%, 6px);
+  transition:
+    opacity 160ms ease,
+    visibility 160ms ease,
+    transform 160ms ease;
+}
+
+.size-selector__tooltip::after {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-top: 6px solid #111111;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
   content: '';
-  transform: rotate(-35deg);
+  transform: translateX(-50%);
+}
+
+.size-selector__option-wrapper--unavailable:hover
+  .size-selector__tooltip,
+.size-selector__option-wrapper--unavailable:focus
+  .size-selector__tooltip,
+.size-selector__option-wrapper--unavailable:focus-within
+  .size-selector__tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+.size-selector__option-wrapper--unavailable:focus-visible {
+  border-radius: 2px;
+  outline: 2px solid #111111;
+  outline-offset: 3px;
 }
 
 .size-selector__help {
@@ -151,6 +240,10 @@ function selectSize(size) {
 
   .size-selector__option {
     min-width: 48px;
+  }
+
+  .size-selector__tooltip {
+    font-size: 0.52rem;
   }
 }
 </style>
